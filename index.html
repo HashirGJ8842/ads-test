@@ -265,17 +265,16 @@
       <p class="sub">Fields marked <span style="color:#0f766e">*</span> are required.</p>
 
       <!-- ========================================================= -->
-      <!-- EDIT #2: replace YOUR_EMAIL@example.com with your email.   -->
-      <!-- First submission triggers a one-time confirmation email    -->
-      <!-- from FormSubmit — click the link in it to activate.        -->
+      <!-- EDIT #2: get a free access key at https://web3forms.com    -->
+      <!-- (enter your email; the key is emailed to you instantly).   -->
+      <!-- Submissions are delivered to that same email address.      -->
+      <!-- Paste the key as the access_key value below.               -->
       <!-- ========================================================= -->
-      <form id="leadForm" action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
-        <!-- FormSubmit options -->
-        <input type="hidden" name="_subject" value="New quote request from your website" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_captcha" value="false" />
-        <!-- Spam honeypot: bots fill this, humans don't -->
-        <input class="honey" type="text" name="_honey" tabindex="-1" autocomplete="off" />
+      <form id="leadForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+        <input type="hidden" name="subject" value="New quote request from your website" />
+        <!-- Spam honeypot: bots tick this, real users never see it -->
+        <input class="honey" type="checkbox" name="botcheck" tabindex="-1" />
 
         <div class="field">
           <label for="name">Name <span class="req">*</span></label>
@@ -311,23 +310,28 @@
       var statusMsg = document.getElementById('statusMsg');
       var button = form.querySelector('.submit');
 
-      // Build the AJAX endpoint from the form's action so the email lives in one place.
-      var ajaxUrl = form.getAttribute('action').replace('formsubmit.co/', 'formsubmit.co/ajax/');
-
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         button.disabled = true;
         button.textContent = 'Sending…';
         statusMsg.className = 'status';
 
-        fetch(ajaxUrl, {
+        // Web3Forms expects JSON (url-encoded triggers a CORS redirect).
+        // It returns HTTP 200 + { success: true } only once the email is
+        // actually delivered — which is exactly what gates the conversion.
+        var payload = JSON.stringify(Object.fromEntries(new FormData(form)));
+
+        fetch('https://api.web3forms.com/submit', {
           method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(form)
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: payload
         })
         .then(function (r) { return r.json(); })
         .then(function (data) {
-          if (data.success === 'true' || data.success === true) {
+          if (data.success === true) {
             // Count a Google Ads conversion when the form is submitted.
             // Replace CONVERSION_LABEL with the label from your Google Ads
             // conversion action (Goals -> Conversions -> your action ->
