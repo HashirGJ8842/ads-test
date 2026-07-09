@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get in Touch — Your Business Name</title>
+  <meta name="description" content="Request a free quote. We usually reply within one business day." />
+
+  <!-- ============================================================= -->
+  <!-- GOOGLE TAG (gtag.js)                                           -->
+  <!-- AW-18310354704 is your Google Ads tag. On every page it powers -->
+  <!-- remarketing audiences and conversion tracking.                 -->
+  <!--                                                                -->
+  <!-- NOTE: a Google Ads tag does NOT produce visitor/traffic        -->
+  <!-- reports. For pageviews, sessions and traffic sources you need  -->
+  <!-- a Google Analytics 4 property (a G- ID). If you have one,       -->
+  <!-- uncomment the G- line below — no second script needed.         -->
+  <!-- ============================================================= -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18310354704"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-18310354704');   // Google Ads (remarketing + conversions)
+
+    // OPTIONAL — traffic/visitor analytics. Create a GA4 property, then
+    // add its Measurement ID here (GA4 → Admin → Data Streams → web stream):
+    // gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  <!-- ============================================================= -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #eef1f6;
+      --ink: #14213d;
+      --muted: #5a6b85;
+      --accent: #0f766e;
+      --accent-strong: #0b5f59;
+      --surface: #ffffff;
+      --border: #e1e7f0;
+      --focus: rgba(15, 118, 110, 0.28);
+      --shadow: 0 20px 60px -25px rgba(20, 33, 61, 0.35);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.55;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 940px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+    }
+
+    /* ---- Left brand panel (the signature element) ---- */
+    .panel {
+      position: relative;
+      padding: 48px 44px;
+      color: #eaf7f5;
+      background:
+        radial-gradient(120% 120% at 0% 0%, #135f5a 0%, transparent 55%),
+        linear-gradient(155deg, #14213d 0%, #0f766e 130%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+    .panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 22px 22px;
+      pointer-events: none;
+    }
+    .panel__eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(234, 247, 245, 0.7);
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+    .panel__title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 18px 0 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .panel__lead {
+      font-size: 15.5px;
+      color: rgba(234, 247, 245, 0.82);
+      max-width: 34ch;
+      position: relative;
+      z-index: 1;
+    }
+    .panel__points {
+      list-style: none;
+      margin-top: 30px;
+      display: grid;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .panel__points li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14.5px;
+      color: rgba(234, 247, 245, 0.92);
+    }
+    .panel__points span {
+      flex: 0 0 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.14);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+    }
+
+    /* ---- Right form panel ---- */
+    .form-wrap { padding: 44px 42px; }
+    .form-wrap h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .form-wrap .sub {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 26px;
+    }
+
+    form { display: grid; gap: 16px; }
+    .field { display: grid; gap: 6px; }
+    .field label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .field .req { color: var(--accent); }
+
+    .field input,
+    .field textarea {
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--ink);
+      background: #f7f9fc;
+      border: 1.5px solid var(--border);
+      border-radius: 11px;
+      padding: 12px 14px;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      width: 100%;
+    }
+    .field textarea { resize: vertical; min-height: 96px; }
+    .field input::placeholder,
+    .field textarea::placeholder { color: #9aa7bd; }
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      background: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--focus);
+    }
+
+    .honey { position: absolute; left: -9999px; opacity: 0; }
+
+    .submit {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--accent);
+      border: none;
+      border-radius: 11px;
+      padding: 14px 20px;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: background 0.18s ease, transform 0.08s ease;
+    }
+    .submit:hover { background: var(--accent-strong); }
+    .submit:active { transform: translateY(1px); }
+    .submit:disabled { opacity: 0.65; cursor: default; }
+    .submit:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+    .note {
+      font-size: 12.5px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 2px;
+    }
+
+    /* ---- Success / error states ---- */
+    .status {
+      display: none;
+      border-radius: 12px;
+      padding: 16px 18px;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    .status.ok { display: block; background: #e8f6f4; color: #0b5f59; border: 1.5px solid #b6e3dd; }
+    .status.err { display: block; background: #fdecec; color: #a32020; border: 1.5px solid #f4c9c9; }
+
+    .done .field, .done .submit, .done .note { display: none; }
+
+    @media (max-width: 720px) {
+      .card { grid-template-columns: 1fr; }
+      .panel { padding: 36px 30px; }
+      .panel__points { margin-top: 22px; }
+      .form-wrap { padding: 34px 28px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <!-- ===== LEFT PANEL · EDIT #3: your name, pitch, and 3 selling points ===== -->
+    <section class="panel">
+      <div>
+        <p class="panel__eyebrow">Your Business Name</p>
+        <h1 class="panel__title">Let's build something together.</h1>
+        <p class="panel__lead">Tell us a little about your project and we'll get back to you with next steps.</p>
+      </div>
+      <ul class="panel__points">
+        <li><span>✓</span> Free, no-obligation quote</li>
+        <li><span>✓</span> Reply within one business day</li>
+        <li><span>✓</span> Over 10 years of experience</li>
+      </ul>
+    </section>
+
+    <!-- ===== RIGHT PANEL · the form ===== -->
+    <section class="form-wrap">
+      <h2>Request a quote</h2>
+      <p class="sub">Fields marked <span style="color:#0f766e">*</span> are required.</p>
+
+      <!-- ========================================================= -->
+      <!-- EDIT #2: replace YOUR_EMAIL@example.com with your email.   -->
+      <!-- First submission triggers a one-time confirmation email    -->
+      <!-- from FormSubmit — click the link in it to activate.        -->
+      <!-- ========================================================= -->
+      <form id="leadForm" action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
+        <!-- FormSubmit options -->
+        <input type="hidden" name="_subject" value="New quote request from your website" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <!-- Spam honeypot: bots fill this, humans don't -->
+        <input class="honey" type="text" name="_honey" tabindex="-1" autocomplete="off" />
+
+        <div class="field">
+          <label for="name">Name <span class="req">*</span></label>
+          <input id="name" name="name" type="text" placeholder="Jane Smith" required />
+        </div>
+
+        <div class="field">
+          <label for="email">Email <span class="req">*</span></label>
+          <input id="email" name="email" type="email" placeholder="jane@example.com" required />
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" placeholder="(555) 123-4567" />
+        </div>
+
+        <div class="field">
+          <label for="message">How can we help? <span class="req">*</span></label>
+          <textarea id="message" name="message" placeholder="A sentence or two about what you need…" required></textarea>
+        </div>
+
+        <button class="submit" type="submit">Send request</button>
+        <p class="note">We'll never share your details. No spam, ever.</p>
+
+        <div class="status" id="statusMsg"></div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var form = document.getElementById('leadForm');
+      var statusMsg = document.getElementById('statusMsg');
+      var button = form.querySelector('.submit');
+
+      // Build the AJAX endpoint from the form's action so the email lives in one place.
+      var ajaxUrl = form.getAttribute('action').replace('formsubmit.co/', 'formsubmit.co/ajax/');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        button.disabled = true;
+        button.textContent = 'Sending…';
+        statusMsg.className = 'status';
+
+        fetch(ajaxUrl, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.success === 'true' || data.success === true) {
+            // Count a Google Ads conversion when the form is submitted.
+            // Replace CONVERSION_LABEL with the label from your Google Ads
+            // conversion action (Goals -> Conversions -> your action ->
+            // Tag setup). Until you do, the base tag above still handles
+            // remarketing; only this conversion count needs the label.
+            if (typeof gtag === 'function') {
+              gtag('event', 'conversion', {
+                send_to: 'AW-18310354704/CONVERSION_LABEL'
+              });
+
+              // If you also add a GA4 (G-) tag above, log the lead there too:
+              // gtag('event', 'generate_lead', { form_name: 'quote_request' });
+            }
+            form.classList.add('done');
+            statusMsg.className = 'status ok';
+            statusMsg.textContent = 'Thanks — your message is on its way. We\'ll be in touch shortly.';
+          } else {
+            throw new Error('submit failed');
+          }
+        })
+        .catch(function () {
+          button.disabled = false;
+          button.textContent = 'Send request';
+          statusMsg.className = 'status err';
+          statusMsg.textContent = 'Something went wrong sending your message. Please email us directly or try again.';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
